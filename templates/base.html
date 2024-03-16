@@ -118,7 +118,7 @@
                             <ul>
                                 {% for category in kategoriyalar %}
                                     <li>
-                                        <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><a href="{% url 'home:category' category.id %}">{{ category.name }}</a></li>
+                                        <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><a href="{% url 'home:category' category.slug %}">{{ category.name }}</a></li>
                                     </li>
                                 {% endfor %}
                             </ul>

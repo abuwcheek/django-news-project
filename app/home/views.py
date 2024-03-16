@@ -47,9 +47,9 @@ class IndexView(View):
 
 
 class Category_list(View):
-    def get(self, request, id):
+    def get(self, request, slug):
 
-        ctg=Category.objects.get(id=id)
+        ctg=Category.objects.get(slug=slug)
         # category_list=New.objects.filter(category__id=id)
         category_list=ctg.category_news.all()
         context={
@@ -61,8 +61,8 @@ class Category_list(View):
 
 
 class DetailView(View):
-    def get(self, request, id):
-        news=get_object_or_404(New, id=id)
+    def get(self, request, slug):
+        news=get_object_or_404(New, slug=slug)
         news.views+=1
         news.save()
 
