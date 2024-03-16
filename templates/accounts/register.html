@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Register
+{% endblock title %}
+
+{% block content %}
+
+<h2>Please Register</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Register" class="btn btn-success">
+    </form>
+    
+<a href="{% url 'home:home' %}" class="btn btn-info">Back</a>
+
+{% endblock content %}

@@ -1,0 +1,389 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+home
+{% endblock title %}
+
+{% block menu %}
+    <a href="{% url 'home:home' %}" class="nav-item nav-link active">Home</a>
+    {% for category in kategoriyalar %}
+        <a href="{% url 'home:category' category.id %}" class="nav-item nav-link">{{ category.name }}</a>
+    {% endfor %}
+
+    <a href="{% url 'home:contact' %}" class="nav-item nav-link">Contact Us</a>
+{% endblock menu %}
+
+{% block content %}
+
+    
+        <!-- Top News Start-->
+        <div class="top-news">
+            <div class="container-fluid">
+                <div class="row">
+                    {% for lastest_new in lastest_news %}
+                        {% if forloop.counter == 1 %}
+                            <div class="col-md-6 tn-left">
+                                <div class="tn-img">
+                                    <img src="{{lastest_new.image.url}}" />
+                                    <div class="tn-content">
+                                        <div class="tn-content-inner">
+                                            <a class="tn-date" href="{% url 'home:detail' lastest_new.id %}"><i class="far fa-clock"></i>Date: {{ lastest_new.created_at }} | Views: {{ lastest_new.views }}</a>
+                                            <a class="tn-title" href="{% url 'home:detail' lastest_new.id %}">{{ lastest_new.title }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="col-md-6 tn-right">
+                        <div class="row">
+                            {% for lastest_new in lastest_news %}
+                                {% if forloop.counter != 1 %}
+                                    <div class="col-md-6">
+                                        <div class="tn-img">
+                                            <img src="{{lastest_new.image.url}}" />
+                                            <div class="tn-content">
+                                                <div class="tn-content-inner">
+                                                    <a class="tn-date" href="{% url 'home:detail' lastest_new.id %}"><i class="far fa-clock"></i>Date: {{ lastest_new.created_at }} | Views: {{ lastest_new.views }}</a>
+                                                    <a class="tn-title" href="{% url 'home:detail' lastest_new.id %}">{{ lastest_new.title }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top News End-->
+
+
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Futbol xabarlari</h2>
+                        <div class="row cn-slider">
+                            {% for global in football_news %}
+                                
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{ global.image.url }}"/>
+                                        <div class="cn-content">
+                                            <div class="cn-content-inner">
+                                                <a class="cn-date" href="{% url 'home:detail' global.id %}"><i class="far fa-clock"></i>Date: {{ global.created_at }} | Views: {{ global.views }}</a>
+                                                <a class="cn-title" href="{% url 'home:detail' global.id %}">{{ global.title }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                         
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify "></i>Ichki yangiliklar</h2>
+                        <div class="row cn-slider">
+                            {% for internal in internal_news %}
+
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{ internal.image.url }}" />
+                                        <div class="cn-content">
+                                            <div class="cn-content-inner">
+                                                <a class="cn-date" href="{% url 'home:detail' internal.id %}"><i class="far fa-clock"></i>Date: {{ internal.created_at }} | Views: {{ internal.views }}</a>
+                                                <a class="cn-title" href="{% url 'home:detail' internal.id %}">{{ internal.title }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Buizness</h2>
+                        <div class="row cn-slider">
+                            {% for buizness in buizness_news %}
+
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{ buizness.image.url }}" />
+                                        <div class="cn-content">
+                                            <div class="cn-content-inner">
+                                                <a class="cn-date" href="{% url 'home:detail' buizness.id %}"><i class="far fa-clock"></i>Date: {{ buizness.created_at }} | Views: {{ buizness.views }}</a>
+                                                <a class="cn-title" href="{% url 'home:detail' buizness.id %}">{{ buizness.title }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Ob-havo</h2>
+                        <div class="row cn-slider">
+                            {% for wheath in wheather_new %}
+
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{ wheath.image.url }}" />
+                                        <div class="cn-content">
+                                            <div class="cn-content-inner">
+                                                <a class="cn-date" href="{% url 'home:detail' wheath.id %}"><i class="far fa-clock"></i>Date: {{ wheath.created_at }} | Views: {{ wheath.views }}</a>
+                                                <a class="cn-title" href="{% url 'home:detail' wheath.id %}">{{ wheath.title }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Jaxon xabarlari</h2>
+                        <div class="row cn-slider">
+                            {% for global in global_news %}
+
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{ global.image.url }}" />
+                                        <div class="cn-content">
+                                            <div class="cn-content-inner">
+                                                <a class="cn-date" href="{% url 'home:detail' global.id %}"><i class="far fa-clock"></i>Date: {{ global.created_at }} | Views: {{ global.views }}</a>
+                                                <a class="cn-title" href="{% url 'home:detail' global.id %}">{{ global.title }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Kundalik yangiliklar</h2>
+                        <div class="row cn-slider">
+                            {% for day in day_news %}
+
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{ day.image.url }}" />
+                                        <div class="cn-content">
+                                            <div class="cn-content-inner">
+                                                <a class="cn-date" href="{% url 'home:detail' day.id %}"><i class="far fa-clock"></i>Date: {{ day.created_at }} | Views: {{ day.views }}</a>
+                                                <a class="cn-title" href="{% url 'home:detail' day.id %}">{{ day.title }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+
+        <!-- Main News Start-->
+        <div class="main-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2><i class="fas fa-align-justify"></i>Oxirgi yangiliklar</h2>
+                                <div class="row">
+
+                                    {% for news in lastest_news %}
+                                        {% if forloop.counter == 1 %}
+                                            <div class="col-lg-6">
+                                                <div class="mn-img">
+                                                    <a href="{% url 'home:detail' news.id %}">
+                                                        <img src="{{ news.image.url }}" />
+                                                    </a>
+                                                </div>
+                                                <div class="mn-content">
+                                                    <a class="mn-title" href="{% url 'home:detail' news.id %}">{{ news.title }}</a>
+                                                    <a class="mn-date" href="{% url 'home:detail' news.id %}"><i class="far fa-clock"></i>Date: {{ news.created_at|date:'D d Y ' }} | Views: {{ news.views }}</a>
+                                                    <p>
+                                                        {{ news.body|safe|slice:":245" }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %} 
+
+                                    <div class="col-lg-6">
+                                        {% for news in lastest_news %}
+                                            {% if forloop.counter != 1 %}
+
+                                                <div class="mn-list">
+                                                    <div class="mn-img">
+                                                        <a href="{% url 'home:detail' news.id %}">
+                                                            <img src="{{ news.image.url }}" />
+                                                        </a>
+                                                    </div>
+                                                    <div class="mn-content">
+                                                        <a class="mn-title" href="{% url 'home:detail' news.id %}">{{ news.title }}</a>
+                                                        <a class="mn-date" href="{% url 'home:detail' news.id %}"><i class="far fa-clock"></i>Date: {{ news.created_at }} | Views: {{ news.views }}</a>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            
+                            <div class="col-md-12">
+                                <h2><i class="fas fa-align-justify"></i>Mashhur yangiliklar</h2>
+                                <div class="row">
+                                    {% for fnews in famous_new %}
+                                        {% if forloop.counter == 1 %}
+                                            <div class="col-lg-6">
+                                                <div class="mn-img">
+                                                    <img src="{{ fnews.image.url }}"/>
+                                                </div>
+                                                <div class="mn-content">
+                                                    <a class="mn-title" href="{% url 'home:detail' fnews.id %}">{{ fnews.title }}</a>
+                                                    <a class="mn-date" href=""><i class="far fa-clock"></i>Date: {{ fnews.created_at }} | Views: {{ fnews.views }}</a>
+                                                    <p>{{ fnews.body|safe|slice:":245" }}</p>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <div class="col-lg-6">
+                                        {% for fnews in famous_new %}
+                                            {% if forloop.counter != 1 %}
+                                                <div class="mn-list">
+                                                    <div class="mn-img">
+                                                        <img src="{{ fnews.image.url }}"/>
+                                                    </div>
+
+                                                    <div class="mn-content">
+                                                        <a class="mn-title" href="{% url 'home:detail' fnews.id %}">{{ fnews.title }}</a>
+                                                        <a class="mn-date" href=""><i class="far fa-clock"></i>Date: {{ fnews.created_at }} | Views: {{ fnews.views }}</a>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="sidebar">
+
+                            <div class="sidebar-widget">
+                                <h2><i class="fas fa-align-justify"></i>Category</h2>
+                                <div class="category">
+                                    <ul class="fa-ul">
+                                        {% for category in kategoriyalar %}
+                                            <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><a href="{% url 'home:category' category.id %}">{{category.name}}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div class="sidebar-widget">
+                                <h2><i class="fas fa-align-justify"></i>Tags</h2>
+                                <div class="tags">
+                                    {% for tag in tags %}
+                                        <a href="#">{{ tag.name }}</a>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            
+                            <div class="sidebar-widget">
+                                {% if ads_one %}
+                                    {% for ads in ads_one %}
+                                        <div class="image">
+                                            <a href="{{ ads.link }}"><img src="{{ ads.image.url }}" alt="Image"></a><br><br>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+
+                            <div class="sidebar-widget">
+                            
+                                <div class="image">
+                                    <div class="row">
+                                        {% if ads_two %}
+                                            {% for ads in ads_two %}
+                                        <div class="col-sm-6">
+                                            <a href="{{ ads.link }}"><img src="{{ ads.image.url }}" alt="Image"></a>
+                                        </div>
+                                            {% endfor %}
+                                        {% endif %}        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main News End-->
+
+
+        
+{% endblock content %}

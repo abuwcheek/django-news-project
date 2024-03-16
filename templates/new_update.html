@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+update news
+{% endblock title %}
+
+{% block content %}
+
+
+<h2>Please Update Post</h2>
+
+    <form method="post" class="container" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="container">
+            {{ form.as_p }}
+        </div>
+
+        <input type="submit" name="submit" value="Update">
+    </form>
+    
+<a href="{% url 'home:home' %}" class="btn btn-info">Back</a>
+
+
+{% endblock content %}

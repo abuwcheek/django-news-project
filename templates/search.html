@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+search page
+{% endblock title %}
+
+
+{% block menu %}
+    <a href="{% url 'home:home' %}" class="nav-item nav-link  ">Home</a>
+    {% for category in kategoriyalar %}
+        <a href="{% url 'home:category' category.id %}" class="nav-item nav-link" >{{ category.name }}</a>
+    {% endfor %}
+
+    <a href="{% url 'home:contact' %}" class="nav-item nav-link">Contact Us</a>
+{% endblock menu %}
+
+
+{% block content %}
+
+ <h1><b>Search results</b></h1>
+
+{% for yangi in searchnews %}
+
+    <div class="container">
+        <a href="{% url 'home:detail' yangi.id %}">
+            <h3><b>{{ yangi.title }}</b></h3>
+            <img src="{{ yangi.image.url }}" alt="image" style="width: 700px; height: 500px;">
+        </a>
+        <b><p>Date: {{ yangi.created_at }} | Views: {{ yangi.views }}</p></b>
+        <hr>
+        <br>
+        <br>
+    </div>
+
+{% endfor %}
+
+{% endblock content %}

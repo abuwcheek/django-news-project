@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+delete page
+{% endblock title %}
+
+{% block menu %}
+    <a href="{% url 'home:home' %}" class="nav-item nav-link">Home</a>
+    {% for category in kategoriyalar %}
+        <a href="{% url 'home:category' category.id %}" class="nav-item nav-link">{{ category.name }}</a>
+    {% endfor %}
+
+    <a href="{% url 'home:contact' %}" class="nav-item nav-link">Contact Us</a>
+{% endblock menu %}
+
+
+{% block content %}
+
+<h1><b>Delete News</b></h1>
+<br>
+<br>
+<hr>
+<br>
+<br>
+
+    <h1>Rostan ham bu xabarni o'chirishni xohlaysizmi?</h1>
+
+    <div class="container">
+        <h2><b>{{ news.title }}</b></h2>
+        <img src="{{ news.image.url }}" alt="image" style="width: 800px; height: 500px;">
+        <br>
+        <br>
+        {% if user.is_authenticated and user == news.author %}
+            <a href="{% url 'home:delete-post' news.id  %}" class="btn btn-info">O'chirish</a>
+            <a href="{% url 'home:detail'  news.id %}" class="btn btn-info">Orqaga</a>
+        {% endif %}
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <br>
+
+{% endblock content %}
