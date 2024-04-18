@@ -43,7 +43,7 @@ home
                                 {% if forloop.counter != 1 %}
                                     <div class="col-md-6">
                                         <div class="tn-img">
-                                            <img src="{{lastest_new.image.url}}" />
+                                            <img src="{{ lastest_new.image.url }}" />
                                             <div class="tn-content">
                                                 <div class="tn-content-inner">
                                                     <a class="tn-date" href="{% url 'home:detail' lastest_new %}"><i class="far fa-clock"></i>Date: {{ lastest_new.created_at }} | Views: {{ lastest_new.views }}</a>
