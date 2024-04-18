@@ -23,7 +23,7 @@ search page
 {% for yangi in searchnews %}
 
     <div class="container">
-        <a href="{% url 'home:detail' yangi.id %}">
+        <a href="{% url 'home:detail' yangi.slug %}">
             <h3><b>{{ yangi.title }}</b></h3>
             <img src="{{ yangi.image.url }}" alt="image" style="width: 700px; height: 500px;">
         </a>

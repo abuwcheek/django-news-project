@@ -75,7 +75,7 @@ class UserRegisterView(View):
 class MyProfileView(View):
     def get(self, request):
         if request.user.is_authenticated:
-            user=User.objects.get(id=request.user.id)
+            user=User.objects.get(id=request.user)
             context={
                 'user': user,
             }
@@ -90,7 +90,7 @@ class UserUpdateView(View):
     form=UserUpdateForm
     def get(self, request):
         if request.user.is_authenticated:
-            user=User.objects.get(id=request.user.id)
+            user=User.objects.get(id=request.user)
             context={
                 'form': self.form(instance=user),
             }

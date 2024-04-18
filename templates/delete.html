@@ -32,8 +32,8 @@ delete page
         <br>
         <br>
         {% if user.is_authenticated and user == news.author %}
-            <a href="{% url 'home:delete-post' news.id  %}" class="btn btn-info">O'chirish</a>
-            <a href="{% url 'home:detail'  news.id %}" class="btn btn-info">Orqaga</a>
+            <a href="{% url 'home:delete-post' news.slug  %}" class="btn btn-info">O'chirish</a>
+            <a href="{% url 'home:detail'  news.slug %}" class="btn btn-info">Orqaga</a>
         {% endif %}
     </div>
     <br>

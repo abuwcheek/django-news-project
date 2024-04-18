@@ -30,9 +30,8 @@ detail page
         <h2><b>{{ news.title }}</b></h2>
         <img src="{{ news.image.url }}" alt="image" style="width: 800px; height: 500px;">
         {% if user.is_authenticated and user == news.author %}
-
-            <a href="{% url 'home:delete' news.id  %}" class="btn btn-info">O'chirish</a>
-            <a href="{% url 'home:newupdate'  news.id %}" class="btn btn-info">Yangilash</a>
+            <a href="{% url 'home:delete' news.slug  %}" class="btn btn-info">O'chirish</a>
+            <a href="{% url 'home:newupdate'  news.slug %}" class="btn btn-info">Yangilash</a>
         {% endif %}
         <br>    
         <br>
