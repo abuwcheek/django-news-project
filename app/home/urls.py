@@ -12,6 +12,6 @@ urlpatterns=[
     path('newupdate/<str:slug>/', NewUpdateView.as_view(), name="newupdate"),
     path('delete/<str:slug>/', DeleteView.as_view(), name="delete"),
     path('delete-post/<str:slug>/', DeletePostView.as_view(), name="delete-post"),
-    path('/', SearchView.as_view(), name=""),
+    path('search/', SearchView.as_view(), name=""),
     
 ]
